@@ -10,6 +10,9 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { StepsComponent } from './steps/steps.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './UserDataService.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,15 @@ import { StepsComponent } from './steps/steps.component';
     ContactComponent,
     LoginComponent,
     SignupComponent,
-    StepsComponent
+    StepsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [UserService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

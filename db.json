@@ -1,0 +1,16 @@
+{
+  "user": [
+    {
+      "firstName": "n",
+      "lastName": "j",
+      "email": "j@h.c",
+      "phoneNumber": 912233,
+      "gender": "male",
+      "dateOfBirth": "2022-12-30",
+      "aadharNo": 361361,
+      "password": "123261",
+      "confirmPassword": "5466",
+      "id": 1
+    }
+  ]
+}
