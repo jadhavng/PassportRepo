@@ -1,0 +1,7 @@
+@import "node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+body {
+  background-image: url("./assets/login-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
