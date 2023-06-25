@@ -11,6 +11,18 @@
       "password": "123261",
       "confirmPassword": "5466",
       "id": 1
+    },
+    {
+      "firstName": "Nilesh ",
+      "lastName": "Jadhav",
+      "email": "jadhavnilesh1308@gmail.com",
+      "phoneNumber": 9112666038,
+      "gender": "male",
+      "dateOfBirth": "2020-11-03",
+      "aadharNo": 123456789123,
+      "password": "1234",
+      "confirmPassword": "1234",
+      "id": 2
     }
   ]
 }

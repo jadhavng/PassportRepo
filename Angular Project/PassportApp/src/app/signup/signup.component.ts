@@ -72,7 +72,7 @@ export class SignupComponent implements OnInit {
       if (this.signUpForm.controls.hasOwnProperty(field)) {
         const control = this.signUpForm.get(field);
 
-        if (control && !control.valid) {
+        if (control && !control.valid && (control.dirty || control.touched)) {
           const messages = this.validationMessages[field];
 
           for (const key in control.errors) {

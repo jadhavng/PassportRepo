@@ -7,7 +7,7 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div *ngIf="!sharedService.isLoggedIn; else logged" class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
@@ -29,6 +29,16 @@
                 </li>
             </ul>
         </div>
+
+        <ng-template #logged>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" routerLink="/">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </ng-template>
+
     </div>
 </nav>
-<router-outlet></router-outlet>
