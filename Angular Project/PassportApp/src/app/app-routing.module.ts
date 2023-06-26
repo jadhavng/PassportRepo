@@ -7,6 +7,8 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { StepsComponent } from './steps/steps.component';
+import { authGuard } from './auth.guard';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,7 +20,9 @@ const routes: Routes = [
   {
     path: 'userDashboard',
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+    canActivate: [authGuard],
   },
+  { path: 'userProfile', component: UserProfileComponent },
 ];
 
 @NgModule({

@@ -43,8 +43,10 @@ export class LoginComponent {
         (response) => {
           if (response.length > 0) {
             // Successful login, user found in the database
+
             console.log('Login successful');
             this.sharedService.isLoggedIn = true;
+            this.userService.loggedInUser = response[0]; // Store logged-in user data
             this.router.navigate(['userDashboard']);
           } else {
             // Invalid credentials, user not found

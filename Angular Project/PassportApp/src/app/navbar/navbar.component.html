@@ -34,7 +34,13 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" routerLink="/">Logout</a>
+                        <a class="nav-link active " routerLink="/userDashboard">Home</a>
+                    </li>
+                    <li class="nav-item" (click)="logout()">
+                        <a class="nav-link active">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " routerLink="userProfile">User Profile</a>
                     </li>
                 </ul>
             </div>
