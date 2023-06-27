@@ -13,6 +13,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.loadUserData(); // Fetch the logged-in user data
+    this.userService.setshareUserName = this.loggedInUser.firstName;
   }
 
   loadUserData() {

@@ -1,0 +1,75 @@
+<section>
+    <!--for demo wrap-->
+    <h1>User Details</h1>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>sr/no</th>
+                    <!-- <th>Photo</th> -->
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>DOB</th>
+                    <th>Passport Type</th>
+                    <th>Application status</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{ user.id }}</td>
+                    <td>
+                        <ng-container *ngIf="editingUser !== user; else firstNameEditField">
+                            {{ user.firstName }}
+                        </ng-container>
+                        <ng-template #firstNameEditField>
+                            <input type="text" [(ngModel)]="user.firstName">
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="editingUser !== user; else lastNameEditField">
+                            {{ user.lastName }}
+                        </ng-container>
+                        <ng-template #lastNameEditField>
+                            <input type="text" [(ngModel)]="user.lastName">
+                        </ng-template>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="editingUser !== user; else emailEditField">
+                            {{ user.email }}
+                        </ng-container>
+                        <ng-template #emailEditField>
+                            <input type="email" [(ngModel)]="user.email">
+                        </ng-template>
+                    </td>
+                    <td>{{ user.dateOfBirth }}</td>
+                    <td>{{ user.passportType }}</td>
+                    <td>
+                        <select [(ngModel)]="user.status" (change)="updateStatus(user)">
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                        </select>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="editingUser !== user; else saveCancelField">
+                            <button (click)="editUser(user)">Edit</button>
+                        </ng-container>
+                        <ng-template #saveCancelField>
+                            <button (click)="saveUser()">Save</button>
+                            <button (click)="cancelEdit()">Cancel</button>
+                        </ng-template>
+                    </td>
+                    <td><button (click)="deleteUser(user)">Delete</button></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0">
+        </table>
+    </div>
+</section>

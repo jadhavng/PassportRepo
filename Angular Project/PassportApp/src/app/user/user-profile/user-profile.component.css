@@ -35,7 +35,6 @@ body {
 .form h2 {
   margin: 18px 0;
   padding-bottom: 10px;
-  width: 210px;
   color: #1e439b;
   font-size: 22px;
   border-bottom: 3px solid #ff5501;
@@ -53,4 +52,17 @@ input {
   font-family: "Montserrat", sans-serif;
   border: 2px solid #bebed2;
   transition: all 0.3s;
+}
+
+.user-image img {
+  width: 35mm;
+  height: 45mm;
+  margin: 5px;
+  border-radius: 4px;
+  border: 4px solid black;
+}
+
+.user-container {
+  display: flex;
+  justify-content: space-between;
 }

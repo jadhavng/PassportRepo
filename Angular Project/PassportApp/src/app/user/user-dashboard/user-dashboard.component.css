@@ -33,6 +33,14 @@
   color: #fff;
   transition: 0.3s;
 }
+.align-items-center {
+  color: white;
+  margin-top: 70px;
+}
+
+.d-flex {
+  color: white;
+}
 
 .hero .icon-box .icon {
   margin-bottom: 20px;

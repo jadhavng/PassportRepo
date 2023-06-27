@@ -8,6 +8,7 @@ import { Observable, of } from 'rxjs';
 export class UserService {
   public loggedInUser: any; // Variable to store logged-in user data
   private apiUrl = 'http://localhost:3000/user'; // Replace with your server-side API endpoint
+  public shareUserName: any;
 
   constructor(private http: HttpClient) {}
 
@@ -20,11 +21,37 @@ export class UserService {
     return this.http.get(url);
   }
 
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  updateUserStatus(userId: string, status: string): Observable<any> {
+    const url = `${this.apiUrl}/${userId}`;
+    return this.http.patch(url, { status });
+  }
+  updateUser(user: any): Observable<any> {
+    const url = `${this.apiUrl}/${user.id}`;
+    return this.http.put<any>(url, user);
+  }
+
+  deleteUser(userId: string): Observable<any> {
+    const url = `${this.apiUrl}/${userId}`;
+    return this.http.delete(url);
+  }
+
   getLoggedInUser(): Observable<any> {
     return of(this.loggedInUser);
   }
 
   setLoggedInUser(user: any): void {
     this.loggedInUser = user;
+  }
+
+  set setshareUserName(value: any) {
+    this.shareUserName = value;
+  }
+
+  get getshareUserName(): any {
+    return this.shareUserName;
   }
 }

@@ -29,6 +29,7 @@ import { HttpClient } from '@angular/common/http';
 export class SignupComponent implements OnInit {
   signUpForm!: FormGroup;
   formErrors: any = {};
+  selectedImage: File | null = null; // Declare selectedImage variable
 
   constructor(
     private fb: FormBuilder,
@@ -58,6 +59,7 @@ export class SignupComponent implements OnInit {
       ],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
+      image: [null], // Add the image control
     });
 
     this.signUpForm.valueChanges.subscribe((data) => {
@@ -89,15 +91,22 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  // onSubmit() {
-  //   if (this.signUpForm.valid) {
-  //     const formData = this.signUpForm.value;
+  onImageUpload(event: any) {
+    const file = event.target.files[0];
 
-  //     this.signUpForm.reset();
-  //   } else {
-  //     this.validateForm();
-  //   }
-  // }
+    // Perform any necessary validation on the file here
+
+    this.selectedImage = file;
+
+    // Convert the image file to a base64-encoded string
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.signUpForm.patchValue({
+        image: e.target.result,
+      });
+    };
+    reader.readAsDataURL(file);
+  }
 
   onSubmit() {
     if (this.signUpForm.valid) {

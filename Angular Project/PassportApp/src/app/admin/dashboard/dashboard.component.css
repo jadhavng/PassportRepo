@@ -1,0 +1,45 @@
+table {
+  width: 100%;
+  table-layout: auto;
+}
+
+.tbl-content {
+  height: 300px;
+  margin-top: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: solid 1px black;
+}
+tr {
+  background-color: #ada5a5;
+  border: 1px solid black;
+}
+
+th {
+  background-color: rgba(247, 2, 2, 0.3);
+  padding: 20px 15px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+  border: solid 1px black;
+}
+
+td {
+  border: solid 1px black;
+}
+
+td {
+  padding: 15px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+
+  white-space: nowrap;
+}
+h1 {
+  text-align: center;
+  color: white;
+}

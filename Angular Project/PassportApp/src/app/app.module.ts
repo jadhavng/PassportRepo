@@ -13,6 +13,7 @@ import { StepsComponent } from './steps/steps.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './UserDataService.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AdminModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent],
