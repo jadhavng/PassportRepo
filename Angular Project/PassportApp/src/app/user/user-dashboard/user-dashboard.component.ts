@@ -48,4 +48,19 @@ export class UserDashboardComponent implements OnInit {
       }
     }
   }
+
+  applyRenewPassport(): void {
+    if (this.user && this.user.passport) {
+      const isEmpty = Object.keys(this.user.passport).length === 0;
+      console.log(isEmpty);
+
+      if (!isEmpty) {
+        // User has already applied for a passport
+        alert('You have already applied for a passport.');
+      } else {
+        // User is applying for the first time, navigate to the fresh passport form
+        this.router.navigate(['userDashboard/renew-passport']);
+      }
+    }
+  }
 }

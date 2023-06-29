@@ -20,6 +20,7 @@ import {
 } from '@angular/forms';
 import { UserService } from '../UserDataService.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -34,7 +35,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -116,7 +118,9 @@ export class SignupComponent implements OnInit {
       this.userService.registerUser(formData).subscribe(
         (response) => {
           console.log('User registered successfully');
+          alert('Registered successfully..');
           this.signUpForm.reset();
+          this.router.navigate(['login']);
         },
         (error) => {
           console.error('Error registering user:', error);

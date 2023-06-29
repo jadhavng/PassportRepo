@@ -10,6 +10,7 @@ import { StepsComponent } from './steps/steps.component';
 import { authGuard } from './auth.guard';
 //import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { UserFormComponent } from './admin/user-form/user-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,7 +25,8 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   //{ path: 'userProfile', component: UserProfileComponent },
-  { path: 'adminDash', component: DashboardComponent },
+  // { path: 'adminDash', component: DashboardComponent },
+  // { path: 'userForm', component: UserFormComponent },
 ];
 
 @NgModule({

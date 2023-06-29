@@ -1,6 +1,8 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 
 import { UserService } from 'src/app/UserDataService.service';
+import { UserFormComponent } from '../user-form/user-form.component'; // Update the path to the actual location of UserFormComponent
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,8 +12,9 @@ import { UserService } from 'src/app/UserDataService.service';
 export class DashboardComponent implements OnInit {
   users: any[] = [];
   editingUser: any = null;
+  public selectedUserId!: string;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
     this.loadUsers();
@@ -78,5 +81,11 @@ export class DashboardComponent implements OnInit {
         console.error('Error deleting user:', error);
       }
     );
+  }
+
+  displayUserForm(userId: string) {
+    console.log('Selected User ID:', userId); // Check the value of userId
+    this.selectedUserId = userId;
+    this.router.navigate(['userForm', userId]);
   }
 }

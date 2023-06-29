@@ -31,6 +31,15 @@ export class UserService {
     const url = `${this.apiUrl}/${userId}`;
     return this.http.patch(url, { status });
   }
+
+  updateUserApplicationStatus(
+    userId: string,
+    Application_Type: string
+  ): Observable<any> {
+    const url = `${this.apiUrl}/${userId}`;
+    return this.http.patch(url, { Application_Type });
+  }
+
   updateUser(user: any): Observable<any> {
     const url = `${this.apiUrl}/${user.id}`;
     return this.http.put<any>(url, user);
@@ -68,5 +77,9 @@ export class UserService {
   getUserPassportDetails(userId: string): Observable<any[]> {
     const url = `${this.apiUrl}/${userId}/passport`;
     return this.http.get<any[]>(url);
+  }
+
+  getUserById(userId: string): Observable<any> {
+    return this.http.get<any>('${this.apiUrl}/users/${userId}');
   }
 }

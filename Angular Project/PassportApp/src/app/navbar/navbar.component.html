@@ -7,7 +7,8 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div *ngIf="!sharedService.isLoggedIn; else logged" class="collapse navbar-collapse" id="navbarNav">
+        <div *ngIf="!sharedService.isLoggedIn && !sharedService.isAdminLogged; else logged"
+            class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
@@ -27,9 +28,7 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/steps">Steps</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/adminDash">admin dashboard</a>
-                </li>
+
             </ul>
         </div>
 
@@ -37,12 +36,12 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active " routerLink="/userDashboard">Home</a>
+                        <a class="nav-link active " click="changeNavigation()">Home</a>
                     </li>
                     <li class="nav-item" (click)="logout()">
                         <a class="nav-link active">Logout</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="sharedService.isLoggedIn">
                         <a class="nav-link " routerLink="/userDashboard/userProfile">User Profile</a>
                     </li>
                 </ul>

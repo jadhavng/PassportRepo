@@ -39,12 +39,17 @@ export class LoginComponent {
       const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
 
+      if (email === 'admin123@gmail.com' && password === '1234') {
+        this.router.navigate(['adminDashboard']);
+        this.sharedService.isAdminLogged = true;
+        return;
+      }
+
       this.userService.login(email, password).subscribe(
         (response) => {
           if (response.length > 0) {
             // Successful login, user found in the database
-
-            console.log('Login successful');
+            alert('Login successful');
             this.sharedService.isLoggedIn = true;
             this.userService.loggedInUser = response[0]; // Store logged-in user data
             this.userService.loggedInUserID = response[0].id;
@@ -52,7 +57,7 @@ export class LoginComponent {
             this.router.navigate(['userDashboard']);
           } else {
             // Invalid credentials, user not found
-            console.log('Invalid credentials');
+            alert('Invalid credentials');
           }
 
           this.loginForm.reset();

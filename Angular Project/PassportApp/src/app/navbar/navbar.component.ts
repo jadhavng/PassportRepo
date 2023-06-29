@@ -12,6 +12,15 @@ export class NavbarComponent {
 
   public logout() {
     this.sharedService.isLoggedIn = false;
+    this.sharedService.isAdminLogged = false;
     this.router.navigate(['/']);
+  }
+
+  changeNavigation() {
+    if (this.sharedService.isLoggedIn) {
+      this.router.navigate(['userDashboard']);
+    } else {
+      this.router.navigate(['adminDashboard']);
+    }
   }
 }

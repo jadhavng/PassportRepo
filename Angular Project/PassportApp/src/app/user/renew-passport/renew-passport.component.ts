@@ -3,14 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/UserDataService.service';
 
 @Component({
-  selector: 'app-fresh-passport',
-  templateUrl: './fresh-passport.component.html',
-  styleUrls: ['./fresh-passport.component.css'],
+  selector: 'app-renew-passport',
+  templateUrl: './renew-passport.component.html',
+  styleUrls: ['./renew-passport.component.css'],
 })
-export class FreshPassportComponent {
+export class RenewPassportComponent {
   myForm: FormGroup;
   formSubmitted = false;
-  fileNumber!: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,10 +29,6 @@ export class FreshPassportComponent {
       voterId: ['', Validators.required],
       employment: ['', Validators.required],
       organizationName: ['', Validators.required],
-      parentOrSpouseGovernmentServant: ['', Validators.required],
-      // educationalQualification: ['', Validators.required],
-      // nonECRCategory: ['', Validators.required],
-      // aadhaarNumber: ['', Validators.required],
       motherGivenName: ['', Validators.required],
       fatherGivenName: ['', Validators.required],
       legalGuardianGivenName: ['', Validators.required],
@@ -53,6 +48,11 @@ export class FreshPassportComponent {
       emergencyState: ['', Validators.required],
       emergencyMobileNo: ['', Validators.required],
       emergencyEmail: ['', [Validators.required, Validators.email]],
+      passportNumber: ['', Validators.required],
+      issue_date: ['', Validators.required],
+      expire_date: ['', Validators.required],
+      placeOfIssue: ['', Validators.required],
+      previousPassport: ['', Validators.required],
       feeAmount: ['', Validators.required],
       ddNumber: ['', Validators.required],
       ddIssueDate: ['', Validators.required],
@@ -62,9 +62,6 @@ export class FreshPassportComponent {
       placeOfApplication: ['', Validators.required],
       dateofApplication: ['', Validators.required],
     });
-
-    // Generate file number when the component initializes
-    this.generateFileNumber();
   }
 
   onSubmit() {
@@ -72,7 +69,16 @@ export class FreshPassportComponent {
     if (this.myForm.valid) {
       const formData = this.myForm.value;
       const userId = this.userService.loggedInUserID; // Replace with the actual user ID
-      this.userService.updateUserApplicationStatus(userId, 'Fresh');
+      this.userService.updateUserApplicationStatus(userId, 'Renewal').subscribe(
+        () => {
+          console.log('Application type updated successfully');
+          // Perform any additional logic or navigate to another page if needed
+        },
+        (error) => {
+          console.error('Failed to update application type:', error);
+        }
+      );
+
       // Update passport details for the user
       this.userService.updateUserPassportDetails(userId, formData).subscribe(
         () => {
@@ -99,16 +105,5 @@ export class FreshPassportComponent {
 
   isFormSubmitted(): boolean {
     return this.formSubmitted;
-  }
-
-  generateFileNumber() {
-    const alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const alphabet = alphabets[Math.floor(Math.random() * alphabets.length)];
-    const randomNumber = Math.floor(1000000 * Math.random() * 9000);
-
-    this.fileNumber = 'F' + alphabet + randomNumber.toString();
-    this.myForm.patchValue({
-      filenumInput: this.fileNumber,
-    });
   }
 }

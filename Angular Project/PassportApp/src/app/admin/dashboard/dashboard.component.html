@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let user of users">
-                    <td>{{ user.id }}</td>
+                    <td (click)="displayUserForm(user.id)">{{ user.id }}</td>
                     <td>
                         <ng-container *ngIf="editingUser !== user; else firstNameEditField">
                             {{ user.firstName }}
@@ -73,3 +73,8 @@
         </table>
     </div>
 </section>
+
+<!-- Conditionally display the UserFormComponent -->
+<ng-container *ngIf="selectedUserId">
+    <app-user-form *ngIf="selectedUserId" [userId]="selectedUserId"></app-user-form>
+</ng-container>
