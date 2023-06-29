@@ -47,6 +47,8 @@ export class LoginComponent {
             console.log('Login successful');
             this.sharedService.isLoggedIn = true;
             this.userService.loggedInUser = response[0]; // Store logged-in user data
+            this.userService.loggedInUserID = response[0].id;
+
             this.router.navigate(['userDashboard']);
           } else {
             // Invalid credentials, user not found

@@ -1,0 +1,638 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="row g-gs justify-content-center passport-container">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-inner">
+                    <div class="card-head">
+                        <h3 class="card-title center"><b>File Number</b></h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="file_num" class="fw-bold">File Number : </label>
+                        <div class="form-control-wrap">
+                            <input type="text" id="file_num" class="form-control" formControlName="filenumInput"
+                                [value]="fileNumber">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- applicant details -->
+    <div class="row g-gs justify-content-center passport-container">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-inner">
+                    <div class="card-head">
+                        <h3 class="card-title center"><b>Applicant Details</b></h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="full-name">Full Name</label>
+                        <div class="form-control-wrap">
+                            <input type="text" class="form-control" id="full-name" formControlName="fullName">
+                        </div>
+                        <div *ngIf="isFieldInvalid('fullName') && isFormSubmitted()">
+                            Please enter a valid full name.
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label class="form-label fw-bold" for="other-names">Are you known by any other names
+                                (aliases)?</label>
+                            <div class="form-control-wrap row">
+                                <div class="col-lg-6">
+                                    <input type="radio" id="passport-yes" name="Have-aliases-name" value="Yes"
+                                        formControlName="otherNames"> Yes
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="radio" id="passport-no" name="Have-aliases-name" value="No"
+                                        formControlName="otherNames"> No
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="form-label fw-bold" for="changed-name">Have you ever changed your
+                                name?</label>
+                            <div class="form-control-wrap row">
+                                <div class="col-lg-6">
+                                    <input type="radio" id="name-change-yes" name="changedName" value="Fresh Passport"
+                                        formControlName="changedName"> Yes
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="radio" id="name-change-no" name="changedName"
+                                        value="Re-issue of Passport" formControlName="changedName"> No
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="village">Place of birth</label>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="form-label" for="village">Village</label>
+                                <input type="text" class="form-control" id="village">
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="form-label" for="district">District</label>
+                                <input type="text" class="form-control" id="district">
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="form-label" for="state">State</label>
+                                <input type="text" class="form-control" id="state">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="date-of-birth">Date of Birth</label>
+                        <input type="date" class="form-control" id="date-of-birth" formControlName="dateOfBirth">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="gender">Gender</label>
+                        <select class="form-control" id="gender" formControlName="gender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="martial-status">Martial Status</label>
+                        <select class="form-control" id="martial-status" formControlName="martialStatus">
+                            <option value="">Select Martial Status</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Divorced">Divorced</option>
+                            <option value="Widowed">Widowed</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="citizenship">Citizenship</label>
+                        <select class="form-control" id="citizenship" formControlName="citizenship">
+                            <option value="">Select Citizenship</option>
+                            <option value="Indian">Indian</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="pan-number">PAN Number</label>
+                        <input type="text" class="form-control" id="pan-number" formControlName="panNumber">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="voter-id">Voter ID</label>
+                        <input type="text" class="form-control" id="voter-id" formControlName="voterId">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="employment">Employment</label>
+                        <select class="form-control" id="employment" formControlName="employment">
+                            <option value="">Select Employment</option>
+                            <option value="Employed">Employed</option>
+                            <option value="Self-employed">Self-employed</option>
+                            <option value="Unemployed">Unemployed</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="organization-name">Organization Name</label>
+                        <input type="text" class="form-control" id="organization-name"
+                            formControlName="organizationName">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label fw-bold" for="gov-servant">Are you a parent or spouse of a government
+                            servant?</label>
+                        <div class="form-control-wrap row">
+                            <div class="col-lg-6">
+                                <input type="radio" id="gov-servant-yes" name="parentOrSpouseGovernmentServant"
+                                    value="Yes" formControlName="parentOrSpouseGovernmentServant"> Yes
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="radio" id="gov-servant-no" name="parentOrSpouseGovernmentServant"
+                                    value="No" formControlName="parentOrSpouseGovernmentServant"> No
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Family Details -->
+    <div class="row g-gs justify-content-center passport-container">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-inner">
+                    <div class="card-head">
+                        <h3 class="card-title center"><b>Family Details</b></h3>
+                    </div>
+                    <div class="form-group">
+
+                        <label class="form-label fw-bold" for="">Father Given Name</label>
+                        <div class="row">
+                            <div class="col-lg">
+                                <input type="text" class="form-control" id="fatherName" placeholder="Father Name"
+                                    formControlName="fatherGivenName">
+                            </div>
+                        </div>
+
+                        <label class="form-label fw-bold " for="">Mother Given Name</label>
+                        <div class="row">
+                            <div class="col-lg">
+                                <input type="text" class="form-control" id="motherName" placeholder="Mother's Name"
+                                    formControlName="motherGivenName">
+                            </div>
+                        </div>
+
+                        <label class="form-label fw-bold" for="">Legal Guardian's Given Name</label>
+                        <div class="row">
+                            <div class="col-lg">
+                                <input type="text" class="form-control" id="guardianName" placeholder="Guardian's Name"
+                                    formControlName="legalGuardianGivenName">
+                            </div>
+                        </div>
+
+                        <label class="form-label fw-bold" for="">Spouse's Given Name</label>
+                        <div class="row">
+                            <div class="col-lg">
+                                <input type="text" class="form-control" id="spouseName" placeholder="Spouse's Name"
+                                    formControlName="spouseGivenName">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Present Residential Address Details -->
+    <div class="row g-gs justify-content-center passport-container">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-inner">
+                    <div class="module">
+                        <h3 class="card-title center"><b>Present Residential Address Details</b></h3>
+                        <div>
+                            <label class="fw-bold">4.1 House No. and Street Name:</label>
+                            <div class="row">
+                                <div class="col-lg">
+                                    <input type="text" formControlName="houseStreetName" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="form-label" for="village">Village</label>
+                                <input type="text" class="form-control" id="village" formControlName="villageTown">
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="form-label" for="district">District</label>
+                                <input type="text" class="form-control" id="district" formControlName="district">
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="form-label" for="state">State</label>
+                                <input type="text" class="form-control" id="state" formControlName="state">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div>
+                                    <label for="pincode" class="fw-bold">4.2 PIN code</label>
+
+                                </div>
+                                <div>
+                                    <input type="text" id="pincode" name="pincode" class="form-control"
+                                        formControlName="pincode">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div>
+                                    <label for="pincode" class="fw-bold">4.3 Mobile No</label>
+                                </div>
+                                <div>
+                                    <input type="number" id="mobileNumber" name="mobileNumber" class="form-control"
+                                        formControlName="mobileNumber">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="" class="fw-bold">4.4 Email Id</label>
+                            <div class="row">
+                                <div class="col-lg">
+                                    <input type="text" id="email-id" formControlName="emailId" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <label for="" class="fw-bold">4.5 Is permanent address same as present address?</label>
+                        <input type="radio" name="present" value="Yes" formControlName="permanentAddressSame"> Yes
+                        <input type="radio" name="present" value="No" formControlName="permanentAddressSame"> No<br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- emergency contact details -->
+    <div class="row justify-content-center passport-container">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center"><b>Emergency Contact Details</b></h3>
+                    <div class="form-group">
+                        <label for="emergencyName" class="fw-bold">5.1 Name:</label>
+                        <input type="text" class="form-control" id="emergencyName" formControlName="emergencyName">
+                    </div>
+                    <div class="form-group">
+                        <label for="emergencyAddress" class="fw-bold">5.2 Address:</label>
+                        <input type="text" class="form-control" id="emergencyAddress" placeholder="Street name"
+                            formControlName="emergencyAddress">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4" class="fw-bold">
+                            <label for="emergencyVillage">Village:</label>
+                            <input type="text" class="form-control" id="emergencyVillage"
+                                formControlName="emergencyVillage">
+                        </div>
+                        <div class="col-lg-4" class="fw-bold">
+                            <label for="emergencyDistrict">District:</label>
+                            <input type="text" class="form-control" id="emergencyDistrict"
+                                formControlName="emergencyDistrict">
+                        </div>
+                        <div class="col-lg-4" class="fw-bold">
+                            <label for="emergencyState">State:</label>
+                            <input type="text" class="form-control" id="emergencyState"
+                                formControlName="emergencyState">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="emergencyMobileNo" class="fw-bold">5.3 Mobile No:</label>
+                                <input type="text" class="form-control" id="emergencyMobileNo"
+                                    formControlName="emergencyMobileNo">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="emergencyEmail" class="fw-bold">5.4 Email Id:</label>
+                                <input type="email" class="form-control" id="emergencyEmail"
+                                    formControlName="emergencyEmail">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- other details -->
+    <div class="row g-gs justify-content-center passport-container">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-inner">
+                    <div class="module">
+                        <h3 class="card-title center"><b>Other details</b></h3>
+                        <div>
+                            <label class="fw-bold">7.1 Provide the following details if there are any criminal
+                                proceedings pending against the applicant</label>
+                            <div style="display: flex; padding-top: 15px;">
+                                <div style="width: 80%; padding-left: 30px;">
+                                    <label>7.1.1 Are any proceedings in respect of an offence alleged to have been
+                                        committed by you pending before a criminal court in India?</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="proceedings" id="proceedings_yes">
+                                    <label for="proceedings_yes">Yes</label>
+                                    <input type="radio" name="proceedings" id="proceedings_no">
+                                    <label for="proceedings_no">No</label><br><br>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; padding-top: 15px;">
+                                <div style="width: 80%; padding-left: 30px;">
+                                    <label>7.1.2 Has any warrant or summons for your appearance been issued & pending
+                                        before a court under any law for the time being in force?</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="warrant_summons" id="warrant_summons_yes">
+                                    <label for="warrant_summons_yes">Yes</label>
+                                    <input type="radio" name="warrant_summons" id="warrant_summons_no">
+                                    <label for="warrant_summons_no">No</label><br><br>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; padding-top: 15px;">
+                                <div style="width: 80%; padding-left: 30px;">
+                                    <label>7.1.3 Has a warrant for your arrest been issued by a court under any law for
+                                        the time being in force?</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="arrest_warrant" id="arrest_warrant_yes">
+                                    <label for="arrest_warrant_yes">Yes</label>
+                                    <input type="radio" name="arrest_warrant" id="arrest_warrant_no">
+                                    <label for="arrest_warrant_no">No</label><br><br>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; padding-top: 15px;">
+                                <div style="width: 80%; padding-left: 30px;">
+                                    <label>7.1.4 Has an order prohibiting your departure from India been made by any
+                                        court?</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="departure_order" id="departure_order_yes">
+                                    <label for="departure_order_yes">Yes</label>
+                                    <input type="radio" name="departure_order" id="departure_order_no">
+                                    <label for="departure_order_no">No</label><br><br>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="padding-bottom: 15px;">
+                            <label class="fw-bold">7.2 Provide the following details if the applicant has been
+                                convicted by a court in India.</label>
+                            <div style="display: flex; padding-top: 15px;">
+                                <div style="width: 80%; padding-left: 30px;">
+                                    <label>7.2.1 Have you, at any time during the period of five years immediately
+                                        preceding the date of this application, been convicted by a court in India for
+                                        any offence involving moral turpitude and sentenced in respect thereof to
+                                        imprisonment for not less than two years?</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="convicted" id="convicted_yes">
+                                    <label for="convicted_yes">Yes</label>
+                                    <input type="radio" name="convicted" id="convicted_no">
+                                    <label for="convicted_no">No</label><br><br>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="fw-bold">7.3 Provide the following details if the applicant has been
+                                refused/denied passport</label>
+                            <div style="display: flex; padding-top: 15px;">
+                                <div style="width: 80%; padding-left: 30px;">
+                                    <label>7.3.1 Have you ever been refused/denied passport?</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="passport_refused" id="passport_refused_yes">
+                                    <label for="passport_refused_yes">Yes</label>
+                                    <input type="radio" name="passport_refused" id="passport_refused_no">
+                                    <label for="passport_refused_no">No</label><br><br>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; padding-top: 15px;">
+                                <div style="width: 80%; padding-left: 30px;">
+                                    <label>7.3.2 Has your passport ever been impounded?</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="passport_impounded" id="passport_impounded_yes">
+                                    <label for="passport_impounded_yes">Yes</label>
+                                    <input type="radio" name="passport_impounded" id="passport_impounded_no">
+                                    <label for="passport_impounded_no">No</label><br><br>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; padding-top: 15px;">
+                                <div style="width: 80%; padding-left: 30px;">
+                                    <label>7.3.3 Has your passport ever been revoked?</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="passport_revoked" id="passport_revoked_yes">
+                                    <label for="passport_revoked_yes">Yes</label>
+                                    <input type="radio" name="passport_revoked" id="passport_revoked_no">
+                                    <label for="passport_revoked_no">No</label><br><br>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="fw-bold">7.4 Provide the following details if the applicant has applied for
+                                or been granted foreign citizenship.</label>
+                            <div style="display: flex; padding-top: 15px;">
+                                <div style="width: 80%; padding-left: 30px;">
+                                    <label>7.4.1 Have you ever been granted citizenship by any other
+                                        region/country?</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="foreign_citizenship" id="foreign_citizenship_yes">
+                                    <label for="foreign_citizenship_yes">Yes</label>
+                                    <input type="radio" name="foreign_citizenship" id="foreign_citizenship_no">
+                                    <label for="foreign_citizenship_no">No</label><br><br>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; padding-top: 15px;">
+                                <div style="width: 80%; padding-left: 30px;">
+                                    <label>7.4.2 Have you ever held the passport of any other region/country at any
+                                        time?</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="held_passport" id="held_passport_yes">
+                                    <label for="held_passport_yes">Yes</label>
+                                    <input type="radio" name="held_passport" id="held_passport_no">
+                                    <label for="held_passport_no">No</label><br><br>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; padding-top: 15px;">
+                                <div style="width: 80%; padding-left: 30px;">
+                                    <label>7.4.3 Have you ever surrendered your Indian passport?</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="surrendered_passport" id="surrendered_passport_yes">
+                                    <label for="surrendered_passport_yes">Yes</label>
+                                    <input type="radio" name="surrendered_passport" id="surrendered_passport_no">
+                                    <label for="surrendered_passport_no">No</label><br><br>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; padding-top: 15px;">
+                                <div style="width: 80%; padding-left: 30px;">
+                                    <label>7.4.4 Have you ever applied for renunciation of Indian citizenship?</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="renunciation" id="renunciation_yes">
+                                    <label for="renunciation_yes">Yes</label>
+                                    <input type="radio" name="renunciation" id="renunciation_no">
+                                    <label for="renunciation_no">No</label><br><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- fee details -->
+    <div class="row justify-content-center passport-container">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-inner">
+                    <div class="module">
+                        <h3 class="card-title text-center"><b>Fee Detail</b></h3>
+
+                        <div class="mb-3">
+                            <label class="fw-bold">8.1 Fee amount:</label>
+                            <input class="form-control" type="number" id="feeAmount" formControlName="feeAmount">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="fw-bold">8.2 If paid by Demand Draft (DD), provide the following
+                                details:</label>
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <label>DD Number</label>
+                                    <input class="form-control" type="number" id="ddNumber" formControlName="ddNumber">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <label>DD Issue Date</label>
+                                    <input class="form-control" type="date" id="ddIssueDate"
+                                        formControlName="ddIssueDate">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <label>DD Expiry Date</label>
+                                    <input class="form-control" type="date" id="ddExpiryDate"
+                                        formControlName="ddExpiryDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="fw-bold">Bank Name</label>
+                                    <input class="form-control" type="text" id="bankName" formControlName="bankName">
+                                </div>
+                                <div class="col">
+                                    <label class="fw-bold">Branch</label>
+                                    <input class="form-control" type="text" id="branch" formControlName="branch">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- self-declaration -->
+    <div class="row justify-content-center passport-container">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-inner">
+                    <div class="module">
+                        <h3 class="card-title text-center"><b>Self Declaration</b></h3>
+                        <div class="p-1">
+                            <p class="fst-italic">I owe allegiance to the sovereignty, unity & integrity of India, and
+                                have not voluntarily
+                                acquired citizenship or travel document of any other country. I have not lost,
+                                surrendered or been deprived of the citizenship of India. I have not contravened any of
+                                the conditions relating to the possession and use of an Indian passport.</p>
+                        </div>
+                        <div class="p-1">
+                            <p class="fst-italic">I affirm that the information and particulars given by me in this form
+                                are true and
+                                correct. I further state that I am not suppressing any material information in this
+                                regard. I further affirm that the enclosures and documentary proof submitted in support
+                                of my application for an Indian passport are authentic and solely pertain to me and I am
+                                fully responsible for the accuracy of the same. I am liable to be penalized or
+                                prosecuted if found otherwise. I am aware that under the Passports Act, 1967 it is a
+                                criminal offence to furnish any false information or to suppress any material
+                                information with a view to obtaining passport or travel document.</p>
+                        </div>
+                        <div class="p-1">
+                            <p class="fst-italic">I affirm that the information and particulars given by me in this form
+                                are true and
+                                correct. I further state that I am not suppressing any material information in this
+                                regard. I further affirm that the enclosures and documentary proof submitted in support
+                                of my application for an Indian passport are authentic and solely pertain to me and I am
+                                fully responsible for the accuracy of the same. I am liable to be penalized or
+                                prosecuted if found otherwise. I am aware that under the Passports Act, 1967 it is a
+                                criminal offence to furnish any false information or to suppress any material
+                                information with a view to obtaining passport or travel document.</p>
+                        </div>
+                        <div class="p-2">
+                            <div class="mb-3">
+                                <label for="place" class="fw-bold">Place:</label>
+                                <input class="form-control" type="text" id="place" formControlName="placeOfApplication">
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="fw-bold">Date:</label>
+                                <input class="form-control" type="date" id="date" formControlName="dateofApplication">
+                            </div>
+                        </div>
+
+                        <div class="wrap">
+                            <button class="button" type="submit">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</form>

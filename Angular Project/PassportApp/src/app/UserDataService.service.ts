@@ -9,10 +9,12 @@ export class UserService {
   public loggedInUser: any; // Variable to store logged-in user data
   private apiUrl = 'http://localhost:3000/user'; // Replace with your server-side API endpoint
   public shareUserName: any;
+  public loggedInUserID: any;
 
   constructor(private http: HttpClient) {}
 
   registerUser(user: any): Observable<any> {
+    user.passport = {};
     return this.http.post<any>(this.apiUrl, user);
   }
 
@@ -53,5 +55,18 @@ export class UserService {
 
   get getshareUserName(): any {
     return this.shareUserName;
+  }
+
+  updateUserPassportDetails(
+    userId: string,
+    passportDetails: any
+  ): Observable<any> {
+    const url = `${this.apiUrl}/${userId}`;
+    return this.http.patch(url, { passport: passportDetails });
+  }
+
+  getUserPassportDetails(userId: string): Observable<any[]> {
+    const url = `${this.apiUrl}/${userId}/passport`;
+    return this.http.get<any[]>(url);
   }
 }
