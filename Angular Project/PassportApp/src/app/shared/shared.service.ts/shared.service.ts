@@ -6,4 +6,5 @@ import { Injectable } from '@angular/core';
 export class SharedService {
   public isLoggedIn = false;
   public isAdminLogged = false;
+  public selectedUserByADmin: any;
 }

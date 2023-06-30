@@ -20,7 +20,7 @@ export class NavbarComponent {
     if (this.sharedService.isLoggedIn) {
       this.router.navigate(['userDashboard']);
     } else {
-      this.router.navigate(['adminDashboard']);
+      this.router.navigate(['adminDashboard/adminDashboard']);
     }
   }
 }

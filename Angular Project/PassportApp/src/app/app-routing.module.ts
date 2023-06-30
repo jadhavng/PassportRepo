@@ -11,6 +11,7 @@ import { authGuard } from './auth.guard';
 //import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { UserFormComponent } from './admin/user-form/user-form.component';
+import { adminAuthGuard } from './admin-auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,12 @@ const routes: Routes = [
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
     canActivate: [authGuard],
   },
+  // {
+  //   path: 'adminDashboard',
+  //   loadChildren: () =>
+  //     import('./admin/admin.module').then((m) => m.AdminModule),
+  //   canActivate: [adminAuthGuard],
+  // },
   //{ path: 'userProfile', component: UserProfileComponent },
   // { path: 'adminDash', component: DashboardComponent },
   // { path: 'userForm', component: UserFormComponent },

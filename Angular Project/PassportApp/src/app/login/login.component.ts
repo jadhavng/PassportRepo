@@ -40,7 +40,7 @@ export class LoginComponent {
       const password = this.loginForm.value.password;
 
       if (email === 'admin123@gmail.com' && password === '1234') {
-        this.router.navigate(['adminDashboard']);
+        this.router.navigate(['adminDashboard/adminDashboard']);
         this.sharedService.isAdminLogged = true;
         return;
       }

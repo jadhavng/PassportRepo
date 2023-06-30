@@ -3,6 +3,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { UserService } from 'src/app/UserDataService.service';
 import { UserFormComponent } from '../user-form/user-form.component'; // Update the path to the actual location of UserFormComponent
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/shared/shared.service.ts/shared.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,11 @@ export class DashboardComponent implements OnInit {
   editingUser: any = null;
   public selectedUserId!: string;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit() {
     this.loadUsers();
@@ -85,7 +90,7 @@ export class DashboardComponent implements OnInit {
 
   displayUserForm(userId: string) {
     console.log('Selected User ID:', userId); // Check the value of userId
-    this.selectedUserId = userId;
+    this.sharedService.selectedUserByADmin = userId;
     this.router.navigate(['userForm', userId]);
   }
 }

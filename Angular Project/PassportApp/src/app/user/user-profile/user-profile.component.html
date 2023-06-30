@@ -9,6 +9,9 @@
             <p><strong>Gender:</strong> {{ loggedInUser.gender }}</p>
             <p><strong>Date of Birth:</strong> {{ loggedInUser.dateOfBirth }}</p>
             <p><strong>Aadhar No:</strong> {{ loggedInUser.aadharNo }}</p>
+            <p><strong>Application Type:</strong> {{ loggedInUser.Application_Type || "Not Applied" }}</p>
+            <p><strong>status; </strong> {{ loggedInUser.status || "new" }}</p>
+
         </div>
         <div class="user-image">
             <img src="{{ loggedInUser.image }}" alt="User Image" *ngIf="loggedInUser.image" />

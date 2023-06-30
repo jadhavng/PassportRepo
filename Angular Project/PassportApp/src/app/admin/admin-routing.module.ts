@@ -4,7 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserFormComponent } from './user-form/user-form.component';
 
 const routes: Routes = [
-  { path: 'adminDashboard', component: DashboardComponent },
+  { path: 'adminDashboard/adminDashboard', component: DashboardComponent },
   { path: 'userForm/:id', component: UserFormComponent },
 ];
 

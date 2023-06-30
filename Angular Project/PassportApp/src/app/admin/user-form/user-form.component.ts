@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from 'src/app/UserDataService.service';
+import { SharedService } from 'src/app/shared/shared.service.ts/shared.service';
 
 @Component({
   selector: 'app-user-form',
@@ -8,11 +9,15 @@ import { UserService } from 'src/app/UserDataService.service';
 })
 export class UserFormComponent implements OnInit {
   public passportDetails: any = {};
-  @Input() userId!: string;
+  userId!: string;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit() {
+    this.userId = this.sharedService.selectedUserByADmin;
     console.log('User ID:', this.userId);
     this.fetchPassportDetails();
   }
@@ -21,7 +26,7 @@ export class UserFormComponent implements OnInit {
     if (this.userId) {
       console.log('Fetching passport details for user ID:', this.userId);
       this.userService.getUserById(this.userId).subscribe(
-        (user) => {
+        (user: any) => {
           this.passportDetails = user.passport;
           console.log('Passport details:', this.passportDetails);
         },
