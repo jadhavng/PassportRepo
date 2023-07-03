@@ -76,7 +76,7 @@ export class FreshPassportComponent {
       // Update passport details for the user
       this.userService.updateUserPassportDetails(userId, formData).subscribe(
         () => {
-          console.log('Passport details updated successfully');
+          alert('Passport details updated successfully');
           // Perform any additional logic or navigate to another page if needed
         },
         (error) => {
@@ -84,7 +84,7 @@ export class FreshPassportComponent {
         }
       );
     } else {
-      console.log('Form is invalid. Please check the fields.');
+      alert('Form is invalid. Please check the fields.');
     }
   }
 

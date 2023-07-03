@@ -71,8 +71,7 @@ export class RenewPassportComponent {
       const userId = this.userService.loggedInUserID; // Replace with the actual user ID
       this.userService.updateUserApplicationStatus(userId, 'Renewal').subscribe(
         () => {
-          console.log('Application type updated successfully');
-          // Perform any additional logic or navigate to another page if needed
+          console.log('Application Details saved successfully');
         },
         (error) => {
           console.error('Failed to update application type:', error);
@@ -82,15 +81,14 @@ export class RenewPassportComponent {
       // Update passport details for the user
       this.userService.updateUserPassportDetails(userId, formData).subscribe(
         () => {
-          console.log('Passport details updated successfully');
-          // Perform any additional logic or navigate to another page if needed
+          alert('Passport details updated successfully');
         },
         (error) => {
           console.error('Failed to update passport details:', error);
         }
       );
     } else {
-      console.log('Form is invalid. Please check the fields.');
+      alert('Form is invalid. Please check the fields.');
     }
   }
 
