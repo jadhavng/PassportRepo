@@ -55,9 +55,13 @@
                 placeholder="Confirm Password">
             <div *ngIf="formErrors.confirmPassword" class="text-danger">{{ formErrors.confirmPassword }}</div>
         </div>
-        <div>
+        <!-- <div>
             <label class="font-weight-bold" for="">Upload Image : </label>
-            <input type="file" id="myFile" (change)="onImageUpload($event)" name=" filename">
+            <input type="file" id="myFile" (change)="onImageUpload($event)" formControlName="image">
+        </div> -->
+        <div>
+            <label class="font-weight-bold" for="">Upload Image:</label>
+            <input type="file" id="myFile" (change)="onImageUpload($event)">
         </div>
         <br>
         <div class="form-group center-btn">

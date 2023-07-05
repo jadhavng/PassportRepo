@@ -65,8 +65,8 @@ export class SignupComponent implements OnInit {
         password: ['', Validators.required],
         confirmPassword: ['', Validators.required],
         image: [null, this.imageFormatValidator(['jpg', 'png'])], // Add the image control with format validator
-      },
-      { validator: this.passwordMatchValidator }
+      }
+      // { validator: this.passwordMatchValidator }
     );
 
     this.signUpForm.valueChanges.subscribe((data) => {
@@ -105,6 +105,12 @@ export class SignupComponent implements OnInit {
       // Perform any necessary validation on the file here
 
       this.selectedImage = file;
+      const control = this.signUpForm.get('image');
+      control?.setValue(file.name); // Set the value to the file name
+      control?.markAsDirty(); // Mark the control as dirty
+
+      const fileNameControl = this.signUpForm.get('imageFileName');
+      fileNameControl?.setValue(file.name);
 
       // Convert the image file to a base64-encoded string
       const reader = new FileReader();
@@ -223,7 +229,7 @@ export class SignupComponent implements OnInit {
 
   imageFormatValidator(allowedFormats: string[]): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      const file = control.value as File;
+      const file = control.value as File | null; // Use null as the fallback value
       if (file && file.name) {
         const fileName = file.name.toLowerCase();
         const fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);

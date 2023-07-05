@@ -8,14 +8,14 @@ describe('RenewPassportComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RenewPassportComponent],
+      declarations: [RenewPassportComponent]
     });
     fixture = TestBed.createComponent(RenewPassportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

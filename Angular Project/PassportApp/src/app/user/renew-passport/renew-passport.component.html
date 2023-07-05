@@ -11,6 +11,9 @@
                         <div class="form-control-wrap">
                             <input type="text" id="file_num" class="form-control" formControlName="filenumInput">
                         </div>
+                        <div *ngIf="isFieldInvalid('filenumInput') && isFormSubmitted()" class="text-danger">
+                            Please enter Name
+                        </div>
                     </div>
                 </div>
             </div>
@@ -31,7 +34,7 @@
                         <div class="form-control-wrap">
                             <input type="text" class="form-control" id="full-name" formControlName="fullName">
                         </div>
-                        <div *ngIf="isFieldInvalid('fullName') && isFormSubmitted()">
+                        <div *ngIf="isFieldInvalid('fullName') && isFormSubmitted()" class="text-danger">
                             Please enter a valid full name.
                         </div>
                     </div>
@@ -50,19 +53,25 @@
                                         formControlName="otherNames"> No
                                 </div>
                             </div>
+                            <div *ngIf="isFieldInvalid('otherNames') && isFormSubmitted()" class="text-danger">
+                                Please select any one option
+                            </div>
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="form-label fw-bold" for="changed-name">Have you ever changed your
                                 name?</label>
                             <div class="form-control-wrap row">
                                 <div class="col-lg-6">
-                                    <input type="radio" id="name-change-yes" name="changedName" value="Fresh Passport"
+                                    <input type="radio" id="name-change-yes" name="changedName" value="Yes"
                                         formControlName="changedName"> Yes
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="radio" id="name-change-no" name="changedName"
-                                        value="Re-issue of Passport" formControlName="changedName"> No
+                                    <input type="radio" id="name-change-no" name="changedName" value="No"
+                                        formControlName="changedName"> No
                                 </div>
+                            </div>
+                            <div *ngIf="isFieldInvalid('changedName') && isFormSubmitted()" class="text-danger">
+                                Please select any one option
                             </div>
                         </div>
                     </div>
@@ -82,68 +91,120 @@
                                 <label class="form-label" for="state">State</label>
                                 <input type="text" class="form-control" id="state">
                             </div>
+                            <div *ngIf="isFieldInvalid('dateOfBirth') && isFormSubmitted()" class="text-danger">
+                                Please enter place of birth
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label fw-bold" for="date-of-birth">Date of Birth</label>
-                        <input type="date" class="form-control" id="date-of-birth" formControlName="dateOfBirth">
+                        <div>
+                            <label class="form-label fw-bold" for="date-of-birth">Date of Birth</label>
+                            <input type="date" class="form-control" id="date-of-birth" formControlName="dateOfBirth">
+                        </div>
+                        <div *ngIf="isFieldInvalid('dateOfBirth') && isFormSubmitted()" class="text-danger">
+                            Please enter date of birth
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="gender">Gender</label>
-                        <select class="form-control" id="gender" formControlName="gender">
-                            <option value="">Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                        </select>
+                        <div>
+                            <label class="form-label" for="gender">Gender</label>
+                            <select class="form-control" id="gender" formControlName="gender">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div *ngIf="isFieldInvalid('gender') && isFormSubmitted()" class="text-danger">
+                            Please enter date of birth
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label fw-bold" for="martial-status">Martial Status</label>
-                        <select class="form-control" id="martial-status" formControlName="martialStatus">
-                            <option value="">Select Martial Status</option>
-                            <option value="Single">Single</option>
-                            <option value="Married">Married</option>
-                            <option value="Divorced">Divorced</option>
-                            <option value="Widowed">Widowed</option>
-                        </select>
+                        <div>
+                            <label class="form-label fw-bold" for="martial-status">Martial Status</label>
+                            <select class="form-control" id="martial-status" formControlName="martialStatus">
+                                <option value="">Select Martial Status</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Divorced">Divorced</option>
+                                <option value="Widowed">Widowed</option>
+                            </select>
+                        </div>
+                        <div *ngIf="isFieldInvalid('martialStatus') && isFormSubmitted()" class="text-danger">
+                            Please select Martial Status
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label fw-bold" for="citizenship">Citizenship</label>
-                        <select class="form-control" id="citizenship" formControlName="citizenship">
-                            <option value="">Select Citizenship</option>
-                            <option value="Indian">Indian</option>
-                            <option value="Other">Other</option>
-                        </select>
+                        <div>
+                            <label class="form-label fw-bold" for="citizenship">Citizenship</label>
+                            <select class="form-control" id="citizenship" formControlName="citizenship">
+                                <option value="">Select Citizenship</option>
+                                <option value="Indian">Indian</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div *ngIf="isFieldInvalid('citizenship') && isFormSubmitted()" class="text-danger">
+                            Please select Citizenship
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label fw-bold" for="pan-number">PAN Number</label>
-                        <input type="text" class="form-control" id="pan-number" formControlName="panNumber">
+                        <div>
+                            <label class="form-label fw-bold" for="pan-number">PAN Number</label>
+                            <input type="text" class="form-control" id="pan-number" formControlName="panNumber">
+                        </div>
+                        <div *ngIf="isFieldInvalid('panNumber', ['required']) && isFormSubmitted()" class="text-danger">
+                            Please enter PAN card number
+                        </div>
+
+                        <div *ngIf="isFieldInvalid('panNumber', ['pattern']) && isFormSubmitted()" class="text-danger">
+                            Please enter a valid PAN card number
+                        </div>
+
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label fw-bold" for="voter-id">Voter ID</label>
-                        <input type="text" class="form-control" id="voter-id" formControlName="voterId">
+                        <div>
+                            <label class="form-label fw-bold" for="voter-id">Voter ID</label>
+                            <input type="text" class="form-control" id="voter-id" formControlName="voterId">
+                        </div>
+                        <div *ngIf="isFieldInvalid('voterId', ['required']) && isFormSubmitted()" class="text-danger">
+                            Please enter Voter card number
+                        </div>
+
+                        <div *ngIf="isFieldInvalid('voterId', ['pattern']) && isFormSubmitted()" class="text-danger">
+                            Please enter a valid Voter card number
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label fw-bold" for="employment">Employment</label>
-                        <select class="form-control" id="employment" formControlName="employment">
-                            <option value="">Select Employment</option>
-                            <option value="Employed">Employed</option>
-                            <option value="Self-employed">Self-employed</option>
-                            <option value="Unemployed">Unemployed</option>
-                        </select>
+                        <div>
+                            <label class="form-label fw-bold" for="employment">Employment</label>
+                            <select class="form-control" id="employment" formControlName="employment">
+                                <option value="">Select Employment</option>
+                                <option value="Employed">Employed</option>
+                                <option value="Self-employed">Self-employed</option>
+                                <option value="Unemployed">Unemployed</option>
+                            </select>
+                        </div>
+                        <div *ngIf="isFieldInvalid('employment') && isFormSubmitted()" class="text-danger">
+                            Please select employment type
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label fw-bold" for="organization-name">Organization Name</label>
-                        <input type="text" class="form-control" id="organization-name"
-                            formControlName="organizationName">
+                        <div>
+                            <label class="form-label fw-bold" for="organization-name">Organization Name</label>
+                            <input type="text" class="form-control" id="organization-name"
+                                formControlName="organizationName">
+                        </div>
+                        <div *ngIf="isFieldInvalid('organizationName') && isFormSubmitted()" class="text-danger">
+                            Please enter Organization Name
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -159,6 +220,10 @@
                                     value="No" formControlName="parentOrSpouseGovernmentServant"> No
                             </div>
                         </div>
+                        <div *ngIf="isFieldInvalid('parentOrSpouseGovernmentServant') && isFormSubmitted()"
+                            class="text-danger">
+                            Please select one feild
+                        </div>
                     </div>
 
 
@@ -167,7 +232,6 @@
             </div>
         </div>
     </div>
-
     <!-- Family Details -->
     <div class="row g-gs justify-content-center passport-container">
         <div class="col-lg-6">
@@ -184,6 +248,9 @@
                                 <input type="text" class="form-control" id="fatherName" placeholder="Father Name"
                                     formControlName="fatherGivenName">
                             </div>
+                            <div *ngIf="isFieldInvalid('fatherGivenName') && isFormSubmitted()" class="text-danger">
+                                Please enter father name
+                            </div>
                         </div>
 
                         <label class="form-label fw-bold " for="">Mother Given Name</label>
@@ -191,6 +258,9 @@
                             <div class="col-lg">
                                 <input type="text" class="form-control" id="motherName" placeholder="Mother's Name"
                                     formControlName="motherGivenName">
+                            </div>
+                            <div *ngIf="isFieldInvalid('motherGivenName') && isFormSubmitted()" class="text-danger">
+                                Please enter Mother name
                             </div>
                         </div>
 
@@ -200,6 +270,10 @@
                                 <input type="text" class="form-control" id="guardianName" placeholder="Guardian's Name"
                                     formControlName="legalGuardianGivenName">
                             </div>
+                            <div *ngIf="isFieldInvalid('legalGuardianGivenName') && isFormSubmitted()"
+                                class="text-danger">
+                                Please enter Guardian name
+                            </div>
                         </div>
 
                         <label class="form-label fw-bold" for="">Spouse's Given Name</label>
@@ -207,6 +281,9 @@
                             <div class="col-lg">
                                 <input type="text" class="form-control" id="spouseName" placeholder="Spouse's Name"
                                     formControlName="spouseGivenName">
+                            </div>
+                            <div *ngIf="isFieldInvalid('spouseGivenName') && isFormSubmitted()" class="text-danger">
+                                Please enter spouse name
                             </div>
                         </div>
                     </div>
@@ -229,9 +306,13 @@
                                 <div class="col-lg">
                                     <input type="text" formControlName="houseStreetName" class="form-control">
                                 </div>
+                                <div *ngIf="isFieldInvalid('houseStreetName') && isFormSubmitted()" class="text-danger">
+                                    Please enter Street name and house number
+                                </div>
                             </div>
                         </div>
                         <div class="row">
+
                             <div class="col-lg-4">
                                 <label class="form-label" for="village">Village</label>
                                 <input type="text" class="form-control" id="village" formControlName="villageTown">
@@ -244,26 +325,51 @@
                                 <label class="form-label" for="state">State</label>
                                 <input type="text" class="form-control" id="state" formControlName="state">
                             </div>
+
+                            <div *ngIf="isFieldInvalid('villageTown') || isFieldInvalid('district')|| isFieldInvalid('state') && isFormSubmitted()"
+                                class="text-danger">
+                                Please fill above feilds
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div>
-                                    <label for="pincode" class="fw-bold">4.2 PIN code</label>
+                                    <div>
+                                        <label for="pincode" class="fw-bold">4.2 PIN code</label>
 
+                                    </div>
+                                    <div>
+                                        <input type="text" id="pincode" name="pincode" class="form-control"
+                                            formControlName="pincode">
+                                    </div>
                                 </div>
-                                <div>
-                                    <input type="text" id="pincode" name="pincode" class="form-control"
-                                        formControlName="pincode">
+                                <div *ngIf="isFieldInvalid('pincode', ['required']) && isFormSubmitted()"
+                                    class="text-danger">
+                                    Please enter a PINCODE
+                                </div>
+                                <div *ngIf="isFieldInvalid('pincode', ['pattern']) && isFormSubmitted()"
+                                    class="text-danger">
+                                    Please enter a Valid PINCODE
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div>
-                                    <label for="pincode" class="fw-bold">4.3 Mobile No</label>
+                                    <div>
+                                        <label for="pincode" class="fw-bold">4.3 Mobile No</label>
+                                    </div>
+                                    <div>
+                                        <input type="number" id="mobileNumber" name="mobileNumber" class="form-control"
+                                            formControlName="mobileNumber">
+                                    </div>
                                 </div>
-                                <div>
-                                    <input type="number" id="mobileNumber" name="mobileNumber" class="form-control"
-                                        formControlName="mobileNumber">
+                                <div *ngIf="isFieldInvalid('mobileNumber', ['required']) && isFormSubmitted()"
+                                    class="text-danger">
+                                    Please enter a Mobile Number
+                                </div>
+                                <div *ngIf="isFieldInvalid('mobileNumber', ['pattern']) && isFormSubmitted()"
+                                    class="text-danger">
+                                    Please enter a valid Mobile Number
                                 </div>
                             </div>
                         </div>
@@ -274,12 +380,26 @@
                                 <div class="col-lg">
                                     <input type="text" id="email-id" formControlName="emailId" class="form-control">
                                 </div>
+                                <div *ngIf="isFieldInvalid('emailId') && isFormSubmitted()" class="text-danger">
+                                    Please Enter valid email ID
+                                </div>
                             </div>
                         </div>
 
-                        <label for="" class="fw-bold">4.5 Is permanent address same as present address?</label>
-                        <input type="radio" name="present" value="Yes" formControlName="permanentAddressSame"> Yes
-                        <input type="radio" name="present" value="No" formControlName="permanentAddressSame"> No<br><br>
+                        <div>
+                            <div>
+                                <label for="" class="fw-bold">4.5 Is permanent address same as present address?</label>
+                                <input type="radio" value="Yes" formControlName="permanentAddressSame">
+                                Yes
+                                <input type="radio" value="No" formControlName="permanentAddressSame">
+                                No
+                            </div>
+                            <div *ngIf="isFieldInvalid('permanentAddressSame') && isFormSubmitted()"
+                                class="text-danger">
+                                Please Any one option
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -293,30 +413,50 @@
                 <div class="card-body">
                     <h3 class="card-title text-center"><b>Emergency Contact Details</b></h3>
                     <div class="form-group">
-                        <label for="emergencyName" class="fw-bold">5.1 Name:</label>
-                        <input type="text" class="form-control" id="emergencyName" formControlName="emergencyName">
+                        <div>
+                            <label for="emergencyName" class="fw-bold">5.1 Name:</label>
+                            <input type="text" class="form-control" id="emergencyName" formControlName="emergencyName">
+                        </div>
+                        <div *ngIf="isFieldInvalid('emergencyName') && isFormSubmitted()" class="text-danger">
+                            Please enter Name
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="emergencyAddress" class="fw-bold">5.2 Address:</label>
-                        <input type="text" class="form-control" id="emergencyAddress" placeholder="Street name"
-                            formControlName="emergencyAddress">
+                        <div>
+                            <label for="emergencyAddress" class="fw-bold">5.2 Address:</label>
+                            <input type="text" class="form-control" id="emergencyAddress" placeholder="Street name"
+                                formControlName="emergencyAddress">
+                        </div>
+                        <div *ngIf="isFieldInvalid('emergencyAddress') && isFormSubmitted()" class="text-danger">
+                            Please enter Address
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4" class="fw-bold">
-                            <label for="emergencyVillage">Village:</label>
+                        <div class="col-lg-4">
+                            <label for="emergencyVillage" class="fw-bold">Village:</label>
                             <input type="text" class="form-control" id="emergencyVillage"
                                 formControlName="emergencyVillage">
+                            <div *ngIf="isFieldInvalid('emergencyVillage') && isFormSubmitted()" class="text-danger">
+                                Please Enter Village name
+                            </div>
                         </div>
-                        <div class="col-lg-4" class="fw-bold">
-                            <label for="emergencyDistrict">District:</label>
+                        <div class="col-lg-4">
+                            <label for="emergencyDistrict" class="fw-bold">District:</label>
                             <input type="text" class="form-control" id="emergencyDistrict"
                                 formControlName="emergencyDistrict">
+                            <div *ngIf="isFieldInvalid('emergencyDistrict') && isFormSubmitted()" class="text-danger">
+                                Please Enter District name
+                            </div>
                         </div>
-                        <div class="col-lg-4" class="fw-bold">
-                            <label for="emergencyState">State:</label>
+                        <div class="col-lg-4">
+                            <label for="emergencyState" class="fw-bold">State:</label>
                             <input type="text" class="form-control" id="emergencyState"
                                 formControlName="emergencyState">
+                            <div *ngIf="isFieldInvalid('emergencyState') && isFormSubmitted()" class="text-danger">
+                                Please Enter State name
+                            </div>
                         </div>
+
                     </div>
 
                     <div class="form-row">
@@ -325,6 +465,10 @@
                                 <label for="emergencyMobileNo" class="fw-bold">5.3 Mobile No:</label>
                                 <input type="text" class="form-control" id="emergencyMobileNo"
                                     formControlName="emergencyMobileNo">
+                                <div *ngIf="isFieldInvalid('emergencyMobileNo') && isFormSubmitted()"
+                                    class="text-danger">
+                                    Please Enter Mobile Number
+                                </div>
                             </div>
                         </div>
                         <div class="col">
@@ -332,6 +476,10 @@
                                 <label for="emergencyEmail" class="fw-bold">5.4 Email Id:</label>
                                 <input type="email" class="form-control" id="emergencyEmail"
                                     formControlName="emergencyEmail">
+                                <div *ngIf="isFieldInvalid('emergencyMobileNo') && isFormSubmitted()"
+                                    class="text-danger">
+                                    Please Enter valid email Id
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -354,34 +502,51 @@
                                 <label for="passportNumber" class="fw-bold">Passport Number</label>
                                 <input type="number" class="form-control" id="passportNumber"
                                     formControlName="passportNumber">
+                                <div *ngIf="isFieldInvalid('passportNumber') && isFormSubmitted()" class="text-danger">
+                                    Please enter passport number
+                                </div>
                             </div>
                             <div class="col">
                                 <label for="issue_date" class="fw-bold">Date of Issue</label>
                                 <input type="date" class="form-control" id="issue_date" formControlName="issue_date">
+                                <div *ngIf="isFieldInvalid('issue_date') && isFormSubmitted()" class="text-danger">
+                                    Please enter date of issue
+                                </div>
                             </div>
                             <div class="col">
                                 <label for="expire_date" class="fw-bold">Date of Expiry</label>
                                 <input type="date" class="form-control" id="expire_date" formControlName="expire_date">
+                                <div *ngIf="isFieldInvalid('expire_date') && isFormSubmitted()" class="text-danger">
+                                    Please enter date of Expiry
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="fw-bold">6.2 Place of Issue:</label>
                         <input type="text" class="form-control" id="placeOfIssue" formControlName="placeOfIssue">
+                        <div *ngIf="isFieldInvalid('placeOfIssue') && isFormSubmitted()" class="text-danger">
+                            Please enter place of issue
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="fw-bold">6.3 Have you ever applied for passport, but not issued?</label>
                         <div class="d-flex">
+
                             <div class="form-check">
-                                <input type="radio" class="form-check-input" id="yes_passport" name="present"
-                                    value="Yes not issued" formControlName="previousPassport">
+                                <input type="radio" class="form-check-input" id="yes_passport" value="Yes not issued"
+                                    formControlName="previousPassport">
                                 <label class="form-check-label" for="yes_passport">Yes</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" class="form-check-input" id="no_passport" name="present"
-                                    value="Yes not issued" formControlName="previousPassport">
+                                <input type="radio" class="form-check-input" id="no_passport" value="Yes not issued"
+                                    formControlName="previousPassport">
                                 <label class="form-check-label" for="no_passport">No</label>
                             </div>
+                            <div *ngIf="isFieldInvalid('previousPassport') && isFormSubmitted()" class="text-danger">
+                                Please Select any one option
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -580,6 +745,9 @@
                         <div class="mb-3">
                             <label class="fw-bold">8.1 Fee amount:</label>
                             <input class="form-control" type="number" id="feeAmount" formControlName="feeAmount">
+                            <div *ngIf="isFieldInvalid('feeAmount') && isFormSubmitted()" class="text-danger">
+                                Please Enter Fee Amount
+                            </div>
                         </div>
 
                         <div class="mb-3">
@@ -589,16 +757,26 @@
                                 <div class="flex-grow-1">
                                     <label>DD Number</label>
                                     <input class="form-control" type="number" id="ddNumber" formControlName="ddNumber">
+                                    <div *ngIf="isFieldInvalid('ddNumber') && isFormSubmitted()" class="text-danger">
+                                        Please Enter DD Number
+                                    </div>
                                 </div>
                                 <div class="flex-grow-1">
                                     <label>DD Issue Date</label>
                                     <input class="form-control" type="date" id="ddIssueDate"
                                         formControlName="ddIssueDate">
+                                    <div *ngIf="isFieldInvalid('ddIssueDate') && isFormSubmitted()" class="text-danger">
+                                        Please Enter DD Issue Date
+                                    </div>
                                 </div>
                                 <div class="flex-grow-1">
                                     <label>DD Expiry Date</label>
                                     <input class="form-control" type="date" id="ddExpiryDate"
                                         formControlName="ddExpiryDate">
+                                    <div *ngIf="isFieldInvalid('ddExpiryDate') && isFormSubmitted()"
+                                        class="text-danger">
+                                        Please Enter DD Expiry Date
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -607,10 +785,16 @@
                                 <div class="col">
                                     <label class="fw-bold">Bank Name</label>
                                     <input class="form-control" type="text" id="bankName" formControlName="bankName">
+                                    <div *ngIf="isFieldInvalid('bankName') && isFormSubmitted()" class="text-danger">
+                                        Please Enter Bank Name
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <label class="fw-bold">Branch</label>
                                     <input class="form-control" type="text" id="branch" formControlName="branch">
+                                    <div *ngIf="isFieldInvalid('branch') && isFormSubmitted()" class="text-danger">
+                                        Please Enter Branch Name
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -619,6 +803,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- self-declaration -->
     <div class="row justify-content-center passport-container">
@@ -660,10 +845,18 @@
                             <div class="mb-3">
                                 <label for="place" class="fw-bold">Place:</label>
                                 <input class="form-control" type="text" id="place" formControlName="placeOfApplication">
+                                <div *ngIf="isFieldInvalid('placeOfApplication') && isFormSubmitted()"
+                                    class="text-danger">
+                                    Please Enter Place Name
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="date" class="fw-bold">Date:</label>
                                 <input class="form-control" type="date" id="date" formControlName="dateofApplication">
+                                <div *ngIf="isFieldInvalid('dateofApplication') && isFormSubmitted()"
+                                    class="text-danger">
+                                    Please Enter Date
+                                </div>
                             </div>
                         </div>
 

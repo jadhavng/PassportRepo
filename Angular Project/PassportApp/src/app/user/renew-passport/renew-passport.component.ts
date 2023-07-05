@@ -17,7 +17,7 @@ export class RenewPassportComponent {
   ) {
     this.myForm = this.formBuilder.group({
       filenumInput: ['', Validators.required],
-      fullName: ['', Validators.required],
+      fullName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
       otherNames: ['', Validators.required],
       changedName: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
@@ -25,20 +25,42 @@ export class RenewPassportComponent {
 
       martialStatus: ['', Validators.required],
       citizenship: ['', Validators.required],
-      panNumber: ['', Validators.required],
-      voterId: ['', Validators.required],
+      panNumber: [
+        '',
+        [Validators.required, Validators.pattern(/^[A-Za-z]{5}\d{4}[A-Za-z]$/)],
+      ],
+      voterId: [
+        '',
+        [Validators.required, Validators.pattern(/^[A-Za-z]{3}\d{7}$/)],
+      ],
       employment: ['', Validators.required],
-      organizationName: ['', Validators.required],
-      motherGivenName: ['', Validators.required],
-      fatherGivenName: ['', Validators.required],
-      legalGuardianGivenName: ['', Validators.required],
-      spouseGivenName: ['', Validators.required],
+      organizationName: [
+        '',
+        [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)],
+      ],
+      parentOrSpouseGovernmentServant: ['', Validators.required],
+      motherGivenName: [
+        '',
+        [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)],
+      ],
+      fatherGivenName: [
+        '',
+        [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)],
+      ],
+      legalGuardianGivenName: [
+        '',
+        [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)],
+      ],
+      spouseGivenName: [
+        '',
+        [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)],
+      ],
       houseStreetName: ['', Validators.required],
       villageTown: ['', Validators.required],
       district: ['', Validators.required],
       state: ['', Validators.required],
-      pincode: ['', Validators.required],
-      mobileNumber: ['', Validators.required],
+      pincode: ['', [Validators.required, Validators.pattern(/^\d{6}$/)]],
+      mobileNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       emailId: ['', [Validators.required, Validators.email]],
       permanentAddressSame: ['', Validators.required],
       emergencyName: ['', Validators.required],
@@ -92,8 +114,15 @@ export class RenewPassportComponent {
     }
   }
 
-  isFieldInvalid(fieldName: string): boolean {
+  isFieldInvalid(fieldName: string, errorTypes?: string[]): boolean {
     const formControl = this.myForm.get(fieldName);
+    if (errorTypes) {
+      return (
+        formControl !== null &&
+        errorTypes.some((errorType) => formControl?.hasError(errorType)) &&
+        (formControl?.touched || this.formSubmitted)
+      );
+    }
     return (
       formControl !== null &&
       formControl.invalid &&

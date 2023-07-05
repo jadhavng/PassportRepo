@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './UserDataService.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminModule } from './admin/admin.module';
+import { adminAuthGuard } from './admin-auth.guard';
 
 @NgModule({
   declarations: [

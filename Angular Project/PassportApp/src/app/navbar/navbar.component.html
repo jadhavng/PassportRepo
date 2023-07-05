@@ -45,6 +45,10 @@
                     <li class="nav-item" *ngIf="sharedService.isLoggedIn">
                         <a class="nav-link " routerLink="/userDashboard/userProfile">User Profile</a>
                     </li>
+                    <li class="nav-item" *ngIf="sharedService.isLoggedIn">
+                        <a class="nav-link " routerLink="/userDashboard/applicationDetails">Application Details</a>
+                    </li>
+
                 </ul>
             </div>
         </ng-template>

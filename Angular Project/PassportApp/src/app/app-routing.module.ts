@@ -25,15 +25,6 @@ const routes: Routes = [
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
     canActivate: [authGuard],
   },
-  // {
-  //   path: 'adminDashboard',
-  //   loadChildren: () =>
-  //     import('./admin/admin.module').then((m) => m.AdminModule),
-  //   canActivate: [adminAuthGuard],
-  // },
-  //{ path: 'userProfile', component: UserProfileComponent },
-  // { path: 'adminDash', component: DashboardComponent },
-  // { path: 'userForm', component: UserFormComponent },
 ];
 
 @NgModule({

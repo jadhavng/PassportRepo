@@ -7,6 +7,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FreshPassportComponent } from './fresh-passport/fresh-passport.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RenewPassportComponent } from './renew-passport/renew-passport.component';
+import { ApplicationFormComponent } from './application-form/application-form.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { RenewPassportComponent } from './renew-passport/renew-passport.componen
     UserProfileComponent,
     FreshPassportComponent,
     RenewPassportComponent,
+    ApplicationFormComponent,
   ],
   imports: [CommonModule, UserRoutingModule, ReactiveFormsModule],
 })
