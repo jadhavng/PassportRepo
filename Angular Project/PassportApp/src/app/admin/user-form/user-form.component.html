@@ -1,7 +1,7 @@
 <div class="form">
     <h2>Passport Details</h2>
     <div class="user-container">
-        <div>
+        <div *ngIf="!isPassportDetailsEmpty(passportDetails); else notApplied">
             <p><strong>Passport Number:</strong> {{ passportDetails.filenumInput || 'Not Applicable' }}</p>
             <p><strong>Full Name:</strong> {{ passportDetails.fullName || 'Not Applicable' }}</p>
             <p><strong>Other Names:</strong> {{ passportDetails.otherNames || 'Not Applicable' }}</p>
@@ -48,5 +48,8 @@
             <p><strong>Place of Application:</strong> {{ passportDetails.placeOfApplication || 'Not Applicable' }}</p>
             <p><strong>Date of Application:</strong> {{ passportDetails.dateofApplication || 'Not Applicable' }}</p>
         </div>
+        <ng-template #notApplied>
+            <h3>Not Applied to any passport</h3>
+        </ng-template>
     </div>
 </div>

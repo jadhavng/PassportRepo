@@ -64,7 +64,7 @@ export class SignupComponent implements OnInit {
         ],
         password: ['', Validators.required],
         confirmPassword: ['', Validators.required],
-        image: [null, this.imageFormatValidator(['jpg', 'png'])], // Add the image control with format validator
+        image: [null], // Add the image control with format validator
       }
       // { validator: this.passwordMatchValidator }
     );
@@ -102,24 +102,36 @@ export class SignupComponent implements OnInit {
     const file = event.target.files[0];
 
     if (file) {
-      // Perform any necessary validation on the file here
+      // Perform validation on the file extension
+      const allowedExtensions = ['.png', '.jpg', '.jpeg'];
+      const fileExtension = file.name
+        .toLowerCase()
+        .substring(file.name.lastIndexOf('.'));
+      let isValidFormat = allowedExtensions.includes(fileExtension);
 
-      this.selectedImage = file;
-      const control = this.signUpForm.get('image');
-      control?.setValue(file.name); // Set the value to the file name
-      control?.markAsDirty(); // Mark the control as dirty
+      if (!isValidFormat) {
+        // Show an error message or handle the invalid file format here
+        alert('Invalid file format. Please upload a PNG or JPG image.');
+        event.target.value = null; // Clear the file input field
+      } else {
+        // Proceed with further actions for valid file formats
+        this.selectedImage = file;
+        const control = this.signUpForm.get('image');
+        control?.setValue(file.name); // Set the value to the file name
+        control?.markAsDirty(); // Mark the control as dirty
 
-      const fileNameControl = this.signUpForm.get('imageFileName');
-      fileNameControl?.setValue(file.name);
+        const fileNameControl = this.signUpForm.get('imageFileName');
+        fileNameControl?.setValue(file.name);
 
-      // Convert the image file to a base64-encoded string
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.signUpForm.patchValue({
-          image: e.target.result,
-        });
-      };
-      reader.readAsDataURL(file);
+        // Convert the image file to a base64-encoded string
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.signUpForm.patchValue({
+            image: e.target.result,
+          });
+        };
+        reader.readAsDataURL(file);
+      }
     }
   }
 
@@ -224,22 +236,6 @@ export class SignupComponent implements OnInit {
       const valid = pattern.test(value);
 
       return valid ? null : { invalidNo: true };
-    };
-  }
-
-  imageFormatValidator(allowedFormats: string[]): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const file = control.value as File | null; // Use null as the fallback value
-      if (file && file.name) {
-        const fileName = file.name.toLowerCase();
-        const fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
-
-        if (!allowedFormats.includes(fileExtension)) {
-          return { invalidFormat: true };
-        }
-      }
-
-      return null;
     };
   }
 }

@@ -49,6 +49,7 @@
 
                     <td>
                         <select [(ngModel)]="user.status" (change)="updateStatus(user)">
+                            <option value="new" selected>new</option>
                             <option value="pending">Pending</option>
                             <option value="approved">Approved</option>
                         </select>

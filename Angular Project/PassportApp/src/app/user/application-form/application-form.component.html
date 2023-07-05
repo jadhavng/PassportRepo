@@ -1,0 +1,55 @@
+<div class="form">
+    <h2>Passport Details</h2>
+    <div class="user-container">
+        <div *ngIf="!isPassportDetailsEmpty(passportDetails); else notApplied">
+            <p><strong>Passport Number:</strong> {{ passportDetails.filenumInput || 'Not Applicable' }}</p>
+            <p><strong>Full Name:</strong> {{ passportDetails.fullName || 'Not Applicable' }}</p>
+            <p><strong>Other Names:</strong> {{ passportDetails.otherNames || 'Not Applicable' }}</p>
+            <p><strong>Changed Name:</strong> {{ passportDetails.changedName || 'Not Applicable' }}</p>
+            <p><strong>Date of Birth:</strong> {{ passportDetails.dateOfBirth || 'Not Applicable' }}</p>
+            <p><strong>Gender:</strong> {{ passportDetails.gender || 'Not Applicable' }}</p>
+            <p><strong>Marital Status:</strong> {{ passportDetails.martialStatus || 'Not Applicable' }}</p>
+            <p><strong>Citizenship:</strong> {{ passportDetails.citizenship || 'Not Applicable' }}</p>
+            <p><strong>PAN Number:</strong> {{ passportDetails.panNumber || 'Not Applicable' }}</p>
+            <p><strong>Voter ID:</strong> {{ passportDetails.voterId || 'Not Applicable' }}</p>
+            <p><strong>Employment:</strong> {{ passportDetails.employment || 'Not Applicable' }}</p>
+            <p><strong>Organization Name:</strong> {{ passportDetails.organizationName || 'Not Applicable' }}</p>
+            <p><strong>Mother's Given Name:</strong> {{ passportDetails.motherGivenName || 'Not Applicable' }}</p>
+            <p><strong>Father's Given Name:</strong> {{ passportDetails.fatherGivenName || 'Not Applicable' }}</p>
+            <p><strong>Legal Guardian's Given Name:</strong> {{ passportDetails.legalGuardianGivenName || 'Not
+                Applicable' }}</p>
+            <p><strong>Spouse's Given Name:</strong> {{ passportDetails.spouseGivenName || 'Not Applicable' }}</p>
+            <p><strong>House/Street Name:</strong> {{ passportDetails.houseStreetName || 'Not Applicable' }}</p>
+            <p><strong>Village/Town:</strong> {{ passportDetails.villageTown || 'Not Applicable' }}</p>
+            <p><strong>District:</strong> {{ passportDetails.district || 'Not Applicable' }}</p>
+            <p><strong>State:</strong> {{ passportDetails.state || 'Not Applicable' }}</p>
+            <p><strong>Pincode:</strong> {{ passportDetails.pincode || 'Not Applicable' }}</p>
+            <p><strong>Mobile Number:</strong> {{ passportDetails.mobileNumber || 'Not Applicable' }}</p>
+            <p><strong>Email ID:</strong> {{ passportDetails.emailId || 'Not Applicable' }}</p>
+            <p><strong>Permanent Address Same:</strong> {{ passportDetails.permanentAddressSame || 'Not Applicable' }}
+            </p>
+            <p><strong>Emergency Name:</strong> {{ passportDetails.emergencyName || 'Not Applicable' }}</p>
+            <p><strong>Emergency Address:</strong> {{ passportDetails.emergencyAddress || 'Not Applicable' }}</p>
+            <p><strong>Emergency Village:</strong> {{ passportDetails.emergencyVillage || 'Not Applicable' }}</p>
+            <p><strong>Emergency District:</strong> {{ passportDetails.emergencyDistrict || 'Not Applicable' }}</p>
+            <p><strong>Emergency State:</strong> {{ passportDetails.emergencyState || 'Not Applicable' }}</p>
+            <p><strong>Emergency Mobile No:</strong> {{ passportDetails.emergencyMobileNo || 'Not Applicable' }}</p>
+            <p><strong>Emergency Email:</strong> {{ passportDetails.emergencyEmail || 'Not Applicable' }}</p>
+            <p><strong>Issue Date:</strong> {{ passportDetails.issue_date || 'Not Applicable' }}</p>
+            <p><strong>Expiry Date:</strong> {{ passportDetails.expire_date || 'Not Applicable' }}</p>
+            <p><strong>Place of Issue:</strong> {{ passportDetails.placeOfIssue || 'Not Applicable' }}</p>
+            <p><strong>Previous Passport:</strong> {{ passportDetails.previousPassport || 'Not Applicable' }}</p>
+            <p><strong>Fee Amount:</strong> {{ passportDetails.feeAmount || 'Not Applicable' }}</p>
+            <p><strong>DD Number:</strong> {{ passportDetails.ddNumber || 'Not Applicable' }}</p>
+            <p><strong>DD Issue Date:</strong> {{ passportDetails.ddIssueDate || 'Not Applicable' }}</p>
+            <p><strong>DD Expiry Date:</strong> {{ passportDetails.ddExpiryDate || 'Not Applicable' }}</p>
+            <p><strong>Bank Name:</strong> {{ passportDetails.bankName || 'Not Applicable' }}</p>
+            <p><strong>Branch:</strong> {{ passportDetails.branch || 'Not Applicable' }}</p>
+            <p><strong>Place of Application:</strong> {{ passportDetails.placeOfApplication || 'Not Applicable' }}</p>
+            <p><strong>Date of Application:</strong> {{ passportDetails.dateofApplication || 'Not Applicable' }}</p>
+        </div>
+        <ng-template #notApplied>
+            <h3>Not Applied to any passport</h3>
+        </ng-template>
+    </div>
+</div>

@@ -22,6 +22,10 @@ export class UserFormComponent implements OnInit {
     this.fetchPassportDetails();
   }
 
+  isPassportDetailsEmpty(passportDetails: any): boolean {
+    return Object.keys(passportDetails).length === 0;
+  }
+
   fetchPassportDetails() {
     if (this.userId) {
       console.log('Fetching passport details for user ID:', this.userId);

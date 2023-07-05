@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
     // Perform API call to update user status in the database
     this.userService.updateUserStatus(user.id, user.status).subscribe(
       (response) => {
-        console.log('User status updated successfully');
+        alert('User status updated successfully');
       },
       (error) => {
         console.error('Error updating user status:', error);
@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
     // Perform API call to save the edited user details in the database
     this.userService.updateUser(this.editingUser).subscribe(
       (response) => {
-        console.log('User details updated successfully');
+        alert('User details updated successfully');
         this.editingUser = null; // Reset editingUser after saving
       },
       (error) => {
@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit {
     // Perform API call to delete user from the database
     this.userService.deleteUser(user.id).subscribe(
       (response) => {
-        console.log('User deleted successfully');
+        alert('User deleted successfully');
         // Remove the user from the local users array
         const index = this.users.indexOf(user);
         if (index !== -1) {
